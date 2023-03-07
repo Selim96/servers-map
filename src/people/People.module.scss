@@ -1,0 +1,30 @@
+.man {
+    
+    display: inline-block;
+    background-image: url("../assets/elements/man_empty.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    &:hover {
+        background-image: url("../assets/elements/man_filled.png");
+    }
+}
+
+.first_man {
+    @extend .man;
+    width: 15px;
+    height: 38px;
+}
+.second_man {
+    @extend .man;
+    width: 25px;
+    height: 57px;
+}
+.third_man {
+    @extend .man;
+    width: 45px;
+    height: 110px;
+}
+
+.main_box:hover  {
+
+}
