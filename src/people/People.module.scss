@@ -2,7 +2,7 @@
     
     display: inline-block;
     background-image: url("../assets/elements/man_empty.png");
-    background-size: contain;
+    background-position: left bottom;
     background-repeat: no-repeat;
     &:hover {
         background-image: url("../assets/elements/man_filled.png");
@@ -11,18 +11,23 @@
 
 .first_man {
     @extend .man;
-    width: 15px;
-    height: 38px;
+    width: 85px;
+    height: 110px;
+    padding-left: 17px;
+    background-size: 15px;
 }
 .second_man {
     @extend .man;
-    width: 25px;
-    height: 57px;
+    width: 70px;
+    height: 110px;
+    padding-left: 28px;
+    background-size: 25px;
 }
 .third_man {
     @extend .man;
     width: 45px;
     height: 110px;
+    background-size: contain;
 }
 
 .main_box:hover  {
