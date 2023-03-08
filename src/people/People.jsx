@@ -24,17 +24,17 @@ function People({ continent }) {
 
     return (
         <div className={`${s.main_box} ${s[continent]}`}>
-            {isShowDevice === null && <span className={s.first_man} onClick={onClickPeople} id={'first'}>
+            {isShowDevice === null ?
+            <span className={s.first_man} onClick={onClickPeople} id={'first'}>
                 <span className={s.second_man} id={'second'}>
                     <span className={s.third_man} id={'third'}></span>
                 </span>
-            </span>}
+            </span> : 
             <div className={s.device_wrapper}>
-                <span className={`${s.laptop} ${isShowDevice >= 1 && s.device}`} ></span>
-                <span className={`${s.tablet} ${isShowDevice >= 2 && s.device}`}></span>
-                <span className={`${s.mobile} ${isShowDevice >= 3 && s.device}`}></span>
-            </div>
-            
+                {isShowDevice >= 1 && <span className={`${s.laptop} ${s[`${continent}_D`]}`} ></span>}
+                {isShowDevice >= 2 && <span className={`${s.tablet} ${s[`${continent}_D`]}`} ></span>}
+                {isShowDevice === 3 && <span className={`${s.mobile} ${s[`${continent}_D`]}`} ></span>}
+            </div>}
         </div>
     )
 };
