@@ -1,11 +1,14 @@
 import People from './people';
+import { Continents } from './constants';
 
 function App() {
   return (
     <div className="App">
-      <People continent='america' />
-      <People continent='europa'/>
-      <People continent='asia'/>
+      <People continent={Continents.NORTH_AMERICA} />
+      <People continent={Continents.AUSTRALIA}/>
+      <People continent={Continents.EUROPA} />
+      <People continent={Continents.ASIA} />
+      <People continent={Continents.SOUTH_AMERICA}/>
     </div>
   );
 }
