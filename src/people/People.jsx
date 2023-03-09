@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useUser } from '../userContext';
 import s from './People.module.scss';
 
 
 
 function People({ continent }) {
     const [isShowDevice, setIsShowDevice] = useState(null);
+
+    const {increasePeople, isShownExtraPeople} = useUser();
 
     const onClickPeople = (e) => {
         switch (e.target.id) {
@@ -20,11 +23,12 @@ function People({ continent }) {
             default:
                 console.log("Invalid subscription type")
         }
+        increasePeople();
     };
 
     return (
         <div className={`${s.main_box} ${s[continent]}`}>
-            {isShowDevice === null ?
+            {isShowDevice === null && isShownExtraPeople ?
             <span className={s.first_man} onClick={onClickPeople} id={'first'}>
                 <span className={s.second_man} id={'second'}>
                     <span className={s.third_man} id={'third'}></span>
