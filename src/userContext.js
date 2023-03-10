@@ -6,6 +6,7 @@ export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
     const [countOfPeopleClicked, setCountOfPeopleClicked] = useState(0);
+    const [countOfServers, setCountOfServers] = useState(0);
     const [isShownExtraPeople, setIsShownExtraPeople] = useState(true);
 
     const increasePeople = () => {
@@ -16,6 +17,10 @@ export const UserProvider = ({ children }) => {
         setCountOfPeopleClicked(5);
     };
 
+    const increaseServers = () => {
+        setCountOfServers(countOfServers + 1);
+    }
+
     const hideExtraPeople = () => {
         setIsShownExtraPeople(false);
     }
@@ -23,7 +28,7 @@ export const UserProvider = ({ children }) => {
     console.log(countOfPeopleClicked)
 
     return (
-        <UserContext.Provider value={{ countOfPeopleClicked, increasePeople, setAllPeople, isShownExtraPeople,  hideExtraPeople}}>
+        <UserContext.Provider value={{ countOfPeopleClicked, countOfServers, increasePeople, increaseServers, setAllPeople, isShownExtraPeople,  hideExtraPeople}}>
         {children}
         </UserContext.Provider>
     );

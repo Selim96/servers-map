@@ -1,12 +1,13 @@
 import { useUser } from '../userContext';
+import { continents } from '../constants';
 import s from './InteractionPanel.module.scss';
 
 function InteractionPanel() {
     const { countOfPeopleClicked, setAllPeople, hideExtraPeople } = useUser();
 
-    
 
-    return countOfPeopleClicked !== 5 ?
+
+    return countOfPeopleClicked !== Object.keys(continents).length ?
         (<div>
             <p>Where are your users? Choose the number for every region.</p>
             {countOfPeopleClicked > 0 && <button onClick={(e) => {
