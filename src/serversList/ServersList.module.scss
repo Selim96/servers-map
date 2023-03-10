@@ -14,10 +14,6 @@
 }
 
 .allServers_item {
-    background-image: url('../assets/elements/circle_empty.png');
-    background-size: 32px;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
     width: 35px;
     height: 35px;
     position: absolute;
@@ -37,9 +33,5 @@
         top: 68%;
         left: 75%;
     }
-    &:hover {
-        background-image: url('../assets/elements/circle_filled.png');
-        background-image: url('../assets/elements/server.png');
-        background-size: contain;
-    }
+    
 }

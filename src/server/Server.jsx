@@ -1,15 +1,24 @@
 import { useState } from 'react';
+import { useUser } from '../userContext';
 import s from './Server.module.scss';
 
-function Server() {
-    const [isServerShown, setIsServerShown] = useState(true);
+function Server({location}) {
+    const [isServerShown, setIsServerShown] = useState(false);
+
+    const {increaseServers, isShownExtraServer, mainServer, addMainServer} = useUser();
+
+    const onClick = (e) => {
+        increaseServers();
+        addMainServer(location);
+        setIsServerShown(true);
+    }
 
     return (
-        <span className={s.server}>
-            <span className={s.server_circle}></span>
-            <span className={s.server_}></span>
-        </span>
-    )
+        <>
+            {!isServerShown && isShownExtraServer && <span className={s.server_circle} onClick={onClick}></span>}
+            {isServerShown && <span className={mainServer === location ? s.server : s.byteCloud}></span>}
+        </>
+    );
 };
 
 export default Server;

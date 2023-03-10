@@ -1,0 +1,26 @@
+%serverBack {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+};
+
+.server_circle {
+    @extend %serverBack;
+    background-image: url('../assets/elements/circle_empty.png');
+    &:hover {
+        background-image: url('../assets/elements/circle_filled.png');
+    }
+}
+
+.server {
+    @extend %serverBack;
+    background-image: url('../assets/elements/server.png');
+}
+
+.byteCloud {
+    @extend %serverBack;
+    background-image: url('../assets/elements/server_ByteCloud.png');
+}

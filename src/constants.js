@@ -5,3 +5,10 @@ export const continents = {
     ASIA: "asia",
     AUSTRALIA: "australia"
 };
+
+export const serverLocations = {
+    LOSANGELES: "losAngeles",
+    NEWYORK: "newYork",
+    FRANKFURT: "frankfurt",
+    SINGAPORE: "singapore"
+}
