@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { data } from "./data/data";
+import { dataLength } from "./data/data";
 import { continents } from "./constants";
 
 const UserContext = createContext();
@@ -34,7 +34,7 @@ export const UserProvider = ({ children }) => {
     };
 
     const setAllServers = () => {
-        setCountOfServers(Object.keys(data).length);
+        setCountOfServers(dataLength);
     };
 
     const addMainServer = (city) => {

@@ -80,6 +80,31 @@ align-items: center;
     position: absolute;
 }
 
+@keyframes slideLaptop {
+  0% {
+    transform: translate(-88%, -5%);
+  }
+  100% {
+    transform: translate(-12%, -5%);
+  }
+}
+@keyframes slideTablet {
+  0% {
+    transform: translate(-75%, -5%);
+  }
+  100% {
+    transform: translate(-25%, -5%);
+  }
+}
+@keyframes slideMobile {
+  0% {
+    transform: translate(-65%, -5%);
+  }
+  100% {
+    transform: translate(-35%, -5%);
+  }
+}
+
 .device_wrapper {
     position: relative;
     width: 100%;
@@ -89,6 +114,23 @@ align-items: center;
 .laptop {
     @extend %device;
     background-image: url("../assets/elements/small.png");
+    
+    &_mask {
+        transform: translate(-12%, -5%);
+        animation-name: slideLaptop;
+        animation-timing-function: linear;
+        // animation-duration: 2000ms;
+        // filter: brightness(1) invert(0);
+    }
+
+    & .thumb {
+        display: inline-block;
+        position: relative;
+        top: 5%;
+        left: 12%;
+        overflow: hidden;
+    }
+
     &.northAmerica_D {
         top: 10%;
         right: 5%;
@@ -114,6 +156,23 @@ align-items: center;
 .tablet {
     @extend %device;
     background-image: url("../assets/elements/medium.png");
+
+    &_mask {
+        transform: translate(-25%, -5%);
+        animation-name: slideTablet;
+        animation-timing-function: linear;
+        // animation-duration: 2000ms;
+        // filter: brightness(1) invert(0);
+    }
+
+    & .thumb {
+        display: inline-block;
+        position: relative;
+        top: 5%;
+        left: 25%;
+        overflow: hidden;
+    }
+
     &.northAmerica_D {
         top: 50%;
         right: 40%;
@@ -139,6 +198,23 @@ align-items: center;
 .mobile {
     @extend %device;
     background-image: url("../assets/elements/large.png");
+
+    &_mask {
+        transform: translate(-35%, -5%);
+        animation-name: slideMobile;
+        animation-timing-function: linear;
+        // animation-duration: 2000ms;
+        // filter: brightness(1) invert(0);
+    }
+
+    & .thumb {
+        display: inline-block;
+        position: relative;
+        top: 5%;
+        left: 35%;
+        overflow: hidden;
+    }
+
     &.northAmerica_D {
         top: 10%;
         left: 5%;

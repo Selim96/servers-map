@@ -67,4 +67,6 @@ export const data = {
         sydney: 92.456,
         warsaw: 182.078
     }
-}
+};
+
+export const dataLength = Object.keys(data).length;

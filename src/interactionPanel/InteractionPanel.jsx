@@ -1,6 +1,6 @@
 import { useUser } from '../userContext';
 import { continents } from '../constants';
-import { data } from '../data/data';
+import { dataLength } from '../data/data';
 import s from './InteractionPanel.module.scss';
 
 function InteractionPanel() {
@@ -28,7 +28,7 @@ function InteractionPanel() {
                     {countOfServers === 0 ?
                         <p>Where is your data? Choose one spot for Object Storage system</p> :
                         <>
-                            {countOfServers !== Object.keys(data).length && <div>
+                            {countOfServers !== dataLength && <div>
                             <p>Choose minimum two additional spots for ByteCloud and press</p>
                             <button disabled={countOfServers >= 3 ? false : true} onClick={onClickStart}>Start</button>
                             </div>}
