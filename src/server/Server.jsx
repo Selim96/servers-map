@@ -8,7 +8,7 @@ function Server({location}) {
     const {increaseServers, isShownExtraServer, mainServer, addMainServer} = useUser();
 
     const onClick = (e) => {
-        increaseServers();
+        increaseServers(location);
         addMainServer(location);
         setIsServerShown(true);
     }
