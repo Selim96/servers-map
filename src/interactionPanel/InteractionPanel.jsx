@@ -20,9 +20,7 @@ function InteractionPanel() {
         startAnimation();
     }
 
-    // if (countOfServers.length === dataLength) {
-    //     startAnimation();
-    // }
+    
 
     return (
         <div className={s.mainBox}>

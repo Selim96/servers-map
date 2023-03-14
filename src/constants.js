@@ -28,4 +28,7 @@ export const serverLocations = {
     SINGAPORE: "singapore"
 };
 
-export const timeCoeff = 50;
+export const coefficients = {
+    animaCoeff: 30,
+    timeCoeff: 50
+} ;

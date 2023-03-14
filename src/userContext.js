@@ -49,23 +49,23 @@ export const UserProvider = ({ children }) => {
         setTimes2([...times2, newTime]);
     };
 
-    const togleAnimation1 = () => {
-        setIsAnimationShown1(!isAnimationShown1);
+    const runAnimation1 = () => {
+        setIsAnimationShown1(true);
     };
+
+    const stopAnimation1 = () => {
+        setIsAnimationShown1(false)
+    }
     
     const togleAnimation2 = () => {
         setIsAnimationShown2(!isAnimationShown2);
     };
 
     const startAnimation = () => {
-        togleAnimation1();
-        setTimeout(() => {
-            togleAnimation1();
-            // togleAnimation2();
-            // setTimeout(() => {
-            //     setIsShownResults(true);
-            // }, Math.max(...times2)*1000 + 3000);
-        }, (Math.max(...times1)*1000 + 3000));
+        runAnimation1();
+        // console.log('run animation1!!!: ', isAnimationShown1)
+        console.log(times1);
+        
     }
 
     return (
@@ -77,6 +77,7 @@ export const UserProvider = ({ children }) => {
             mainServer,
             isAnimationShown1,
             isAnimationShown2,
+            times1,
             increaseContinents,
             increaseServers,
             hideExtraPeople,
