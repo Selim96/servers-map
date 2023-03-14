@@ -26,4 +26,6 @@ export const serverLocations = {
     NEWYORK: "newYork",
     FRANKFURT: "frankfurt",
     SINGAPORE: "singapore"
-}
+};
+
+export const timeCoeff = 50;

@@ -237,3 +237,46 @@ z-index: 2;
         right: 40%;
     }
 }
+
+// ===========Time/Latency style=============
+
+.time {
+    position: absolute;
+    padding: 5px 7px;
+    border-radius: 4px;
+    background-color: rgba(107, 104, 104, 0.568);
+    font-weight: 600;
+    width: 150px;
+    text-align: center;
+}
+
+.northAmerica .time {
+    top: -35%;
+    left: 23%;
+}
+.southAmerica .time {
+    bottom: -15%;
+    left: 10%;
+}
+.europa .time {
+    top: -30%;
+
+}
+.asia .time {
+    top: 10%;
+}
+.australia .time {
+    bottom: -35%;
+}
+
+.latency {
+    // @extend .time
+    padding: 5px 7px;
+    border-radius: 4px;
+    background-color: rgba(107, 104, 104, 0.568);
+    font-weight: 600;
+    width: 150px;
+    text-align: center;
+    position: absolute;
+    bottom: -60%;
+}

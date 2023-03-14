@@ -7,7 +7,7 @@ import { useState } from 'react';
 function InteractionPanel() {
     const [isNextClicked, setIsNextClicked] = useState(false);
 
-    const { countOfContinents, countOfServers, hideExtraPeople, hideExtraServer, isShownExtraServer } = useUser();
+    const { countOfContinents, countOfServers, hideExtraPeople, hideExtraServer, isShownExtraServer, startAnimation } = useUser();
 
     const onClickNext = (e) => {
         hideExtraPeople();
@@ -17,7 +17,12 @@ function InteractionPanel() {
     const onClickStart = (e) => {
         console.log('start is clicked');
         hideExtraServer();
+        startAnimation();
     }
+
+    // if (countOfServers.length === dataLength) {
+    //     startAnimation();
+    // }
 
     return (
         <div className={s.mainBox}>
