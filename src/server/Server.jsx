@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUser } from '../userContext';
 import { dataLength } from '../data/data';
 import s from './Server.module.scss';
@@ -6,22 +6,7 @@ import s from './Server.module.scss';
 function Server({location}) {
     const [isServerShown, setIsServerShown] = useState(false);
 
-    const { increaseServers, isShownExtraServer, hideExtraServer, mainServer, addMainServer, startAnimation, countOfServers } = useUser();
-    
-    const first = (e) => {
-        setIsServerShown(true);
-        increaseServers(location);
-        if (countOfServers.length === 0) {
-            addMainServer(location);
-        }
-    }
-    const second = (e) => {
-        console.log(countOfServers.length)
-        if (countOfServers.length >= (dataLength - 1)) {
-            hideExtraServer();
-            startAnimation();
-        }
-    }
+    const { increaseServers, isShownExtraServer, hideExtraServer, mainServer, addMainServer, countOfServers, isShownResults } = useUser();
 
     const onClick = (e) => {
         setIsServerShown(true);
@@ -31,9 +16,18 @@ function Server({location}) {
         }
         if (countOfServers.length >= (dataLength - 1)) {
             hideExtraServer();
-            
         }
-    }
+    };
+
+    const reset = () => {
+        setIsServerShown(false);
+    };
+
+    useEffect(() => {
+        if (isShownResults) {
+            reset();
+        }
+    }, [isShownResults]);
 
     return (
         <>

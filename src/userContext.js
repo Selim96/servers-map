@@ -101,22 +101,29 @@ export const UserProvider = ({ children }) => {
     }
 
     const startAnimation = () => {
-        console.log('start is clicked');
         onAnimation1();
         setTimeout(() => {
             offAnimation1();
-            console.log('first done!!');
             onAnimation2();
             setTimeout(() => {
-                // offAnimation2()
-                showResult()
-                console.log('second done!!');
-            }, (Math.max(...getArrOfLatency(getTime))+3000));
-        }, (Math.max(...getArrOfLatency(getTime))+1000));
+                showResult();
+                offAnimation2();
+            }, (Math.max(...getArrOfLatency(getLatencyMainServer)) + 1000));
+        }, (Math.max(...getArrOfLatency(getTime)) + 1000));
+    };
+
+    const resetAll = () => {
+        setCountOfContinents([]);
+        setCountOfServers([]);
+        setIsShownExtraPeople(true);
+        setIsShownExtraServer(true);
+        setMainServer('');
+        offAnimation1();
+        offAnimation2();
+        setIsShownResults(false);
     }
 
     useEffect(() => {
-        console.log('context is rendered')
         if (!isShownExtraServer) {
             startAnimation()
         }
@@ -140,7 +147,8 @@ export const UserProvider = ({ children }) => {
             startAnimation,
             setIsShownExtraServer,
             getTime,
-            getLatencyMainServer
+            getLatencyMainServer,
+            resetAll
         }}>
         {children}
         </UserContext.Provider>

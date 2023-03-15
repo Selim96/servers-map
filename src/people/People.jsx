@@ -11,7 +11,7 @@ function People({ continent }) {
     const [cities, setCities] = useState([]);
     const [isShownTime, setIsShownTime] = useState(false);
 
-    const { increaseContinents, isShownExtraPeople, getTime, getLatencyMainServer, isAnimationShown1, isAnimationShown2 } = useUser();
+    const { increaseContinents, isShownExtraPeople, getTime, getLatencyMainServer, isAnimationShown1, isAnimationShown2, isShownResults } = useUser();
     
     const currentCities = Object.values(continents).find(item => item.name === continent).cities;
 
@@ -60,9 +60,20 @@ function People({ continent }) {
         setIsShownTime(false);
     }
 
+    const reset = () => {
+        setIsShowDevice(null);
+        setCities([]);
+        setIsShownTime(false);
+    }
 
     useEffect(() => {
-        // console.log('first animation')
+        if(isShownResults) {
+            reset();
+        }
+    }, [isShownResults])
+
+
+    useEffect(() => {
         if (isAnimationShown1) {
             setTimeout(() => {
                 ShowTime()
@@ -71,7 +82,6 @@ function People({ continent }) {
     }, [isAnimationShown1]);
 
     useEffect(() => {
-        console.log('second animation')
         if (isAnimationShown2) {
             ShowLatency()
             setTimeout(() => {

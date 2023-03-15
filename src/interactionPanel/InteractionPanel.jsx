@@ -7,7 +7,7 @@ import { useState } from 'react';
 function InteractionPanel() {
     const [isNextClicked, setIsNextClicked] = useState(false);
 
-    const { countOfContinents, countOfServers, hideExtraPeople, hideExtraServer, isShownExtraServer, startAnimation } = useUser();
+    const { countOfContinents, countOfServers, hideExtraPeople, hideExtraServer, isShownExtraServer, startAnimation, isShownResults, resetAll } = useUser();
 
     const onClickNext = (e) => {
         hideExtraPeople();
@@ -15,9 +15,13 @@ function InteractionPanel() {
     };
 
     const onClickStart = (e) => {
-        
         hideExtraServer();
         startAnimation();
+    }
+
+    const onClickReset = (e) => {
+        resetAll();
+        setIsNextClicked(false);
     }
 
     return (
@@ -40,6 +44,7 @@ function InteractionPanel() {
                     }
                 </div>
             }
+            {isShownResults && <div><p>Do you want to <span onClick={onClickReset}>start again</span>?</p></div>}
         </div>
     );
 };
