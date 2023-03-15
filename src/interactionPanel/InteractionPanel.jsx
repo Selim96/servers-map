@@ -15,12 +15,10 @@ function InteractionPanel() {
     };
 
     const onClickStart = (e) => {
-        console.log('start is clicked');
+        
         hideExtraServer();
         startAnimation();
     }
-
-    
 
     return (
         <div className={s.mainBox}>

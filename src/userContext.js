@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from "react";
-import { dataLength } from "./data/data";
-// import { continents } from "./constants";
+import { createContext, useContext, useEffect, useState } from "react";
+import { data } from "./data/data";
+import { serverLocations, coefficients, continents } from "./constants";
 
 const UserContext = createContext();
 
@@ -15,8 +15,6 @@ export const UserProvider = ({ children }) => {
     const [isAnimationShown1, setIsAnimationShown1] = useState(false);
     const [isAnimationShown2, setIsAnimationShown2] = useState(false);
     const [isShownResults, setIsShownResults] = useState(false);
-    const [times1, setTimes1] = useState([]);
-    const [times2, setTimes2] = useState([]);
 
     const increaseContinents = (newContinent) => {
         setCountOfContinents([...countOfContinents, newContinent]);
@@ -35,38 +33,94 @@ export const UserProvider = ({ children }) => {
     };
 
     const addMainServer = (city) => {
-        if (countOfServers.length === 0) {
             setMainServer(city);
+    };
+
+    function getTime(continent, city) {
+        let result;
+        switch (continent) {
+            case continents.EUROPA.name:
+                result = countOfServers.includes(serverLocations.FRANKFURT) ?
+                    data.find(item => item.server === serverLocations.FRANKFURT).clients[city] :
+                    data.find(item => item.server === serverLocations.SINGAPORE).clients[city];
+                break;
+            case continents.ASIA.name:
+                result = countOfServers.includes(serverLocations.SINGAPORE) ?
+                    data.find(item => item.server === serverLocations.SINGAPORE).clients[city] :
+                    data.find(item => item.server === serverLocations.FRANKFURT).clients[city];
+                break;
+            case continents.AUSTRALIA.name:
+                result = countOfServers.includes(serverLocations.SINGAPORE) ?
+                    data.find(item => item.server === serverLocations.SINGAPORE).clients[city] :
+                    data.find(item => item.server === serverLocations.FRANKFURT).clients[city];
+                break;
+            case continents.NORTH_AMERICA.name:
+                result = countOfServers.includes(serverLocations.NEWYORK) ?
+                    data.find(item => item.server === serverLocations.NEWYORK).clients[city] :
+                    data.find(item => item.server === serverLocations.LOSANGELES).clients[city];
+                break;
+            case continents.SOUTH_AMERICA.name:
+                result = countOfServers.includes(serverLocations.LOSANGELES) ?
+                    data.find(item => item.server === serverLocations.LOSANGELES).clients[city] :
+                    data.find(item => item.server === serverLocations.NEWYORK).clients[city];
+                break;
+            default:
+                console.log("Invalid subscription type")
         }
-        console.log(mainServer);
+        return (result * coefficients.animaCoeff);
+        // единица измерения ms
     };
 
-    const addTimes1 = (newTime) => {
-        setTimes1([...times1, newTime]);
+    const getLatencyMainServer = (name, city) => {
+        return data.find(item => item.server === mainServer).clients[city] * coefficients.animaCoeff;
+    }
+
+    const getArrOfLatency = (func) => {
+        const result = countOfContinents.flatMap(({ name, cities }) => cities.map(item => Number(func(name, item).toFixed(2))))
+        return result;
     };
 
-    const addTimes2 = (newTime) => {
-        setTimes2([...times2, newTime]);
-    };
-
-    const runAnimation1 = () => {
+    const onAnimation1 = () => {
         setIsAnimationShown1(true);
     };
 
-    const stopAnimation1 = () => {
-        setIsAnimationShown1(false)
-    }
+    const offAnimation1 = () => {
+        setIsAnimationShown1(false);
+    };
     
-    const togleAnimation2 = () => {
-        setIsAnimationShown2(!isAnimationShown2);
+    const onAnimation2 = () => {
+        setIsAnimationShown2(true);
     };
 
-    const startAnimation = () => {
-        runAnimation1();
-        // console.log('run animation1!!!: ', isAnimationShown1)
-        console.log(times1);
-        
+    const offAnimation2 = () => {
+        setIsAnimationShown2(false);
+    };
+
+    const showResult = () => {
+        setIsShownResults(true);
     }
+
+    const startAnimation = () => {
+        console.log('start is clicked');
+        onAnimation1();
+        setTimeout(() => {
+            offAnimation1();
+            console.log('first done!!');
+            onAnimation2();
+            setTimeout(() => {
+                // offAnimation2()
+                showResult()
+                console.log('second done!!');
+            }, (Math.max(...getArrOfLatency(getTime))+3000));
+        }, (Math.max(...getArrOfLatency(getTime))+1000));
+    }
+
+    useEffect(() => {
+        console.log('context is rendered')
+        if (!isShownExtraServer) {
+            startAnimation()
+        }
+    }, [isShownExtraServer])
 
     return (
         <UserContext.Provider value={{
@@ -77,15 +131,16 @@ export const UserProvider = ({ children }) => {
             mainServer,
             isAnimationShown1,
             isAnimationShown2,
-            times1,
+            isShownResults,
             increaseContinents,
             increaseServers,
             hideExtraPeople,
             hideExtraServer,
             addMainServer,
-            addTimes1,
-            addTimes2,
-            startAnimation
+            startAnimation,
+            setIsShownExtraServer,
+            getTime,
+            getLatencyMainServer
         }}>
         {children}
         </UserContext.Provider>

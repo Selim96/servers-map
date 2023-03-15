@@ -6,14 +6,32 @@ import s from './Server.module.scss';
 function Server({location}) {
     const [isServerShown, setIsServerShown] = useState(false);
 
-    const {increaseServers, isShownExtraServer, mainServer, addMainServer,startAnimation,countOfServers} = useUser();
+    const { increaseServers, isShownExtraServer, hideExtraServer, mainServer, addMainServer, startAnimation, countOfServers } = useUser();
+    
+    const first = (e) => {
+        setIsServerShown(true);
+        increaseServers(location);
+        if (countOfServers.length === 0) {
+            addMainServer(location);
+        }
+    }
+    const second = (e) => {
+        console.log(countOfServers.length)
+        if (countOfServers.length >= (dataLength - 1)) {
+            hideExtraServer();
+            startAnimation();
+        }
+    }
 
     const onClick = (e) => {
-        increaseServers(location);
-        addMainServer(location);
         setIsServerShown(true);
+        increaseServers(location);
+        if (countOfServers.length === 0) {
+            addMainServer(location);
+        }
         if (countOfServers.length >= (dataLength - 1)) {
-            startAnimation();
+            hideExtraServer();
+            
         }
     }
 
