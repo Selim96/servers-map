@@ -46,12 +46,6 @@ function People({ continent }) {
         // единица измерения ms
     }
 
-    // function getMaxLatencyToMainServer() {
-    //     const result = Number((Math.max(...cities.map(item => getLatencyMainServer(continent, item))) / coefficients.animaCoeff).toFixed(2));
-    //     return result;
-    //     // единица измерения ms
-    // }
-
     function getMaxTime() {
         const result = (getMaxLatency(isAnimationShown1 ? getTime : getLatencyMainServer) * coefficients.timeCoeff / 1000).toFixed(2);
         return result;
