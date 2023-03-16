@@ -13,12 +13,14 @@ function ResultTablet() {
         // единица измерения ms
     }
 
+    const sortedContinents = countOfContinents.sort((first, second)=>second.cities.length - first.cities.length)
+
     return (
         <div className={s.main}>
             <div className={s.tablet_container}>
                 <h2 className={s.tablet_title}>ByteCloud</h2>
-                {<ul>
-                    {countOfContinents.map(({ name, cities }) =>
+                {<ul className={s.tablet_list}>
+                    {sortedContinents.map(({ name, cities }) =>
                         <li key={name}><Tablet continent={name} latency={getMaxLatency(getTime, name, cities)} time/></li>
                     )}
                 </ul>}
@@ -26,7 +28,7 @@ function ResultTablet() {
             <div className={s.tablet_container}>
                 <h2 className={s.tablet_title}>Object Storage</h2>
                 {<ul>
-                    {countOfContinents.map(({ name, cities }) =>
+                    {sortedContinents.map(({ name, cities }) =>
                         <li key={name + 'store'}><Tablet continent={name} latency={getMaxLatency(getLatencyMainServer, name, cities)} time/></li>
                     )}
                 </ul>}
