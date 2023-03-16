@@ -3,6 +3,7 @@ import { continents } from './constants';
 import InteractionPanel from './interactionPanel';
 import ServersList from './serversList';
 import ResultTablet from './resultTablet';
+import ConnectingLines from './connectingLines';
 import { useUser } from './userContext';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <People continent={continents.EUROPA.name} />
       <People continent={continents.ASIA.name} />
       <People continent={continents.SOUTH_AMERICA.name} />
+      <ConnectingLines/>
       {(!isShownExtraPeople || countOfContinents.length === Object.keys(continents).length) && <ServersList />}
       {isShownResults && <ResultTablet/>}
     </div>
