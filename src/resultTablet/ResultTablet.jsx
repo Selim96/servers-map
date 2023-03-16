@@ -27,7 +27,7 @@ function ResultTablet() {
             </div>
             <div className={s.tablet_container}>
                 <h2 className={s.tablet_title}>Object Storage</h2>
-                {<ul>
+                {<ul className={s.tablet_list}>
                     {sortedContinents.map(({ name, cities }) =>
                         <li key={name + 'store'}><Tablet continent={name} latency={getMaxLatency(getLatencyMainServer, name, cities)} time/></li>
                     )}

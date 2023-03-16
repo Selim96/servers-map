@@ -1,4 +1,35 @@
 .mainBox {
     position: absolute;
     z-index: 5;
+    padding: 15px;
+    padding-left: 25px;
+    & p {
+        display: inline-block;
+    }
+}
+
+.button {
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+    color: rgb(57, 85, 241);
+    margin-left: 10px;
+    &:hover {
+        font-weight: 600;
+    }
+}
+
+.disabledBtn {
+    margin-left: 10px;
+    border: none;
+    background-color: inherit;
+    color: rgba(57, 85, 241, 0.507);
+}
+
+.restart {
+    cursor: pointer;
+    color: rgb(57, 85, 241);
+    &:hover {
+        font-weight: 600;
+    }
 }

@@ -29,7 +29,7 @@ function InteractionPanel() {
             {countOfContinents.length !== Object.keys(continents).length && !isNextClicked ?
                 <div>
                     <p>Where are your users? Choose the number for every region.</p>
-                    {countOfContinents.length > 0 && <button onClick={onClickNext}>Next</button>}
+                    {countOfContinents.length > 0 && <button className={s.button} onClick={onClickNext}>Next</button>}
                 </div> :
                 <div>
                     {countOfServers.length === 0 ?
@@ -38,13 +38,13 @@ function InteractionPanel() {
                             {(countOfServers.length !== dataLength && isShownExtraServer) &&
                             <div>
                                 <p>Choose minimum two additional spots for ByteCloud and press</p>
-                                <button disabled={countOfServers.length >= 3 ? false : true} onClick={onClickStart}>Start</button>
+                                <button className={countOfServers.length >= 3 ? s.button : s.disabledBtn} disabled={countOfServers.length >= 3 ? false : true} onClick={onClickStart}>Start</button>
                             </div>}
                         </>
                     }
                 </div>
             }
-            {isShownResults && <div><p>Do you want to <span onClick={onClickReset}>start again</span>?</p></div>}
+            {isShownResults && <div><p>Do you want to <span className={s.restart} onClick={onClickReset}>start again</span>?</p></div>}
         </div>
     );
 };

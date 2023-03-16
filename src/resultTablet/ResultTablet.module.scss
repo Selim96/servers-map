@@ -16,5 +16,8 @@
 
 .tablet_list {
     padding: 15px 10px;
+    &>li {
+        margin-bottom: 15px;
+    }
 }
 
