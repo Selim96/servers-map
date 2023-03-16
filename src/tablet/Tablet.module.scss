@@ -33,7 +33,7 @@ width: 125px;
 }
 
 th:last-child {
-    width: 145px;
+    width: 150px;   
 }
 
 tr {
@@ -42,8 +42,14 @@ tr {
 
 .rating_list {
     display: flex;
+    align-items: center;
+    justify-content: end;
 }
 
 .value {
     font-weight: 600;
+}
+
+.stars {
+    color: yellow;
 }
