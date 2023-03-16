@@ -71,7 +71,7 @@ function Tablet({ continent, latency }) {
                 <tr>
                     <td className={s.rows}>Latency <br/><span className={s.value}>{latency}</span></td>
                     <td className={s.rows}>Download time<br/> <span className={s.value}>{getMaxTime()}sec</span></td>
-                    <td className={s.rows}>Video streaming <br /> {videoQuality}</td>
+                    <td className={s.rows}>Video streaming <br /> <span className={s.value}>{videoQuality}</span></td>
                 </tr>
             </tbody>
         </table>
